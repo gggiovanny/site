@@ -3,8 +3,8 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Giovanny Baltazar Site`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: 'Giovanny Baltazar Site',
+    siteUrl: 'https://www.yourdomain.tld',
   },
   plugins: [
     'gatsby-plugin-emotion',
