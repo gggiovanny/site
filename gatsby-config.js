@@ -3,7 +3,7 @@
  */
 module.exports = {
   siteMetadata: {
-    title: 'Giovanny Baltazar Site',
+    title: 'Giovanny Baltazar',
     siteUrl: 'https://gggiovanny.github.io/site',
   },
   plugins: [
