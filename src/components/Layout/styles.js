@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 const centeredContentCss = css`
-  max-width: 800px;
+  max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
 `;
