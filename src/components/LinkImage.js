@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 
@@ -23,7 +24,7 @@ const Overlay = styled.div`
   align-items: center;
 `;
 
-const Container = styled.div`
+const Container = styled(Link)`
   position: relative;
 
   :hover ${Overlay} {
@@ -50,7 +51,7 @@ const Text = styled.span`
 export const LinkImage = ({ image, alt, text, to }) => {
   return (
     <div>
-      <Container>
+      <Container to={to}>
         <Image image={image} alt={alt} />
         <Overlay>
           <Text>{text}</Text>

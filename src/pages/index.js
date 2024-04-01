@@ -11,12 +11,14 @@ function IndexPage({ data }) {
     <Layout>
       <ImageGrid>
         {data.allFile.nodes.map(node => {
-          const category = node.dir.split('/').at(-1);
+          const category = node.fields.category;
           return (
             <LinkImage
+              key={node.id}
               image={node.childImageSharp.gatsbyImageData}
               text={category}
               alt={`Cover image for${category}`}
+              to={`/${category}`}
             />
           );
         })}
@@ -31,9 +33,11 @@ export const query = graphql`
       nodes {
         id
         name
-        dir
+        fields {
+          category
+        }
         childImageSharp {
-          gatsbyImageData
+          gatsbyImageData(transformOptions: { fit: INSIDE })
         }
       }
     }
