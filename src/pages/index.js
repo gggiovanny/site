@@ -6,4 +6,6 @@ function IndexPage() {
   return <Layout>This is the main page</Layout>;
 }
 
+export const Head = () => <title>Giovanny Baltazar Site</title>;
+
 export default IndexPage;

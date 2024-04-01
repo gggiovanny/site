@@ -4,7 +4,7 @@
 module.exports = {
   siteMetadata: {
     title: 'Giovanny Baltazar Site',
-    siteUrl: 'https://www.yourdomain.tld',
+    siteUrl: 'https://gggiovanny.github.io/site',
   },
   plugins: [
     'gatsby-plugin-emotion',
@@ -27,6 +27,19 @@ module.exports = {
         path: './src/pages/',
       },
       __key: 'pages',
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Giovanny Baltazar Site',
+        short_name: 'Gio Site',
+        start_url: '/',
+        icon: 'src/images/favicon.png',
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
+        display: 'standalone',
+        crossOrigin: `use-credentials`,
+      },
     },
   ],
 };
