@@ -6,5 +6,4 @@ export const ImageList = styled.section`
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  flex-grow: 1;
 `;

@@ -11,8 +11,17 @@ function ImageCategoryPage({ data }) {
     <Layout>
       <ImageList>
         {data.allFile.nodes.map(node => {
-          const { src, originalName } = node.childImageSharp.fluid;
-          return <img key={node.id} src={src} placeholder={originalName} />;
+          const { originalName } = node.childImageSharp.fluid;
+          return (
+            <img
+              key={node.id}
+              src={node.publicURL}
+              placeholder={originalName}
+              width="100%"
+              height="auto"
+              loading="lazy"
+            />
+          );
         })}
       </ImageList>
     </Layout>
@@ -27,9 +36,9 @@ export const query = graphql`
         fields {
           category
         }
+        publicURL
         childImageSharp {
           fluid {
-            src
             originalName
           }
         }
