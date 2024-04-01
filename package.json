@@ -13,7 +13,7 @@
     "check": "npm run lint && npm run format",
     "develop": "gatsby develop",
     "start": "gatsby develop",
-    "build": "gatsby build && rm -rf docs/* && mv public/* docs/",
+    "build": "gatsby build --prefix-paths && rm -rf docs/* && mv public/* docs/",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
