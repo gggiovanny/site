@@ -5,14 +5,10 @@ import React from 'react';
 
 const Overlay = styled.div`
   position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.1); /* Black see-through */
   color: #f1f1f1;
   width: 100%;
+  height: 100%;
   transition: 0.5s ease;
   opacity: 0;
   color: white;
@@ -26,6 +22,11 @@ const Overlay = styled.div`
 
 const Container = styled(Link)`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 
   :hover ${Overlay} {
     opacity: 1;
