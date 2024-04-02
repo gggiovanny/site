@@ -5,7 +5,6 @@ import React from 'react';
 
 const Overlay = styled.div`
   position: absolute;
-  background: rgba(0, 0, 0, 0.1); /* Black see-through */
   color: #f1f1f1;
   width: 100%;
   height: 100%;
@@ -18,6 +17,8 @@ const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  opacity: 0.5;
 `;
 
 const Container = styled(Link)`
@@ -30,6 +31,7 @@ const Container = styled(Link)`
 
   :hover ${Overlay} {
     opacity: 1;
+    background: rgba(0, 0, 0, 0.1); /* Black see-through */
   }
 
   cursor: pointer;
