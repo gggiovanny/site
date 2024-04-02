@@ -1,10 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import { ImageGrid } from '../components/ImageGrid';
-import { Layout } from '../components/Layout/Layout';
-import { LinkImage } from '../components/LinkImage';
-import Seo from '../components/Seo';
+import { ImageGrid, Layout, LinkImage, Seo } from '../components';
 
 function IndexPage({ data }) {
   return (
