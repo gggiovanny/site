@@ -5,5 +5,11 @@ export const ImageList = styled.section`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
