@@ -15,7 +15,7 @@ function ImageCategoryPage({ data }) {
           return (
             <img
               key={node.id}
-              src={node.publicURL}
+              srcSet={node.childImageSharp.fluid.srcSet}
               placeholder={originalName}
               width="100%"
               height="auto"
@@ -36,10 +36,10 @@ export const query = graphql`
         fields {
           category
         }
-        publicURL
         childImageSharp {
           fluid {
             originalName
+            srcSet
           }
         }
       }
@@ -47,6 +47,6 @@ export const query = graphql`
   }
 `;
 
-export const Head = () => <Seo title="Gallery" />;
+export const Head = ({ params: { fields__category } }) => <Seo title={fields__category} />;
 
 export default ImageCategoryPage;
