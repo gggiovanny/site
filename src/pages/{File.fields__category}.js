@@ -11,7 +11,7 @@ function ImageCategoryPage({ data }) {
         {data.allFile.nodes.map(node => {
           const { originalName } = node.childImageSharp.fluid;
           return (
-            <Link to={toPhotoNameUrl(node.name)}>
+            <Link to={node.photoPath}>
               <img
                 key={node.id}
                 srcSet={node.childImageSharp.fluid.srcSet}
@@ -28,25 +28,12 @@ function ImageCategoryPage({ data }) {
   );
 }
 
-function toPhotoNameUrl(photoName) {
-  // Returns the unchanged photoName if it only contains digits
-  if (/^\d+$/.test(photoName)) return `/${photoName}`;
-
-  // Convert the string to lowercase
-  let result = photoName.toLowerCase();
-
-  // Use a regular expression to insert a dash before any digit
-  result = result.replace(/(\d)/, '-$1');
-
-  return `/${result}`;
-}
-
 export const query = graphql`
   query ($fields__category: String) {
     allFile(filter: { fields: { category: { eq: $fields__category } }, name: { ne: "cover" } }) {
       nodes {
+        photoPath: gatsbyPath(filePath: "/{File.name}")
         id
-        name
         fields {
           category
         }

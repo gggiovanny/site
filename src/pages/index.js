@@ -15,7 +15,7 @@ function IndexPage({ data }) {
               image={node.childImageSharp.gatsbyImageData}
               text={category}
               alt={`Cover image for${category}`}
-              to={`/${category}`}
+              to={node.galleryPath}
             />
           );
         })}
@@ -28,6 +28,7 @@ export const query = graphql`
   query {
     allFile(filter: { relativeDirectory: { regex: "/photos/" }, name: { eq: "cover" } }) {
       nodes {
+        galleryPath: gatsbyPath(filePath: "/{File.fields__category}")
         id
         name
         fields {

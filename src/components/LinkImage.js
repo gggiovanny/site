@@ -3,8 +3,6 @@ import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 
-import { sanitizeUrl } from '../utils';
-
 const Overlay = styled.div`
   position: absolute;
   color: #f1f1f1;
@@ -56,7 +54,7 @@ const Text = styled.span`
 export const LinkImage = ({ image, alt, text, to }) => {
   return (
     <div>
-      <Container to={sanitizeUrl(to)}>
+      <Container to={to}>
         <Image image={image} alt={alt} />
         <Overlay>
           <Text>{text}</Text>
