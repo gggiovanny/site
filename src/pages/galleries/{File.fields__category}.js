@@ -2,7 +2,7 @@
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 
-import { ImageList, Layout, Seo } from '../components';
+import { ImageList, Layout, Seo } from '../../components';
 
 function ImageCategoryPage({ data }) {
   return (
@@ -32,7 +32,7 @@ export const query = graphql`
   query ($fields__category: String) {
     allFile(filter: { fields: { category: { eq: $fields__category } }, name: { ne: "cover" } }) {
       nodes {
-        photoPath: gatsbyPath(filePath: "/{File.name}")
+        photoPath: gatsbyPath(filePath: "/photos/{File.name}")
         id
         fields {
           category

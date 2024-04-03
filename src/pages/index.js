@@ -28,7 +28,7 @@ export const query = graphql`
   query {
     allFile(filter: { relativeDirectory: { regex: "/photos/" }, name: { eq: "cover" } }) {
       nodes {
-        galleryPath: gatsbyPath(filePath: "/{File.fields__category}")
+        galleryPath: gatsbyPath(filePath: "/galleries/{File.fields__category}")
         id
         name
         fields {

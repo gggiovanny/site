@@ -2,7 +2,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import { Layout, Seo } from '../components';
+import { Layout, Seo } from '../../components';
 
 function ImageCategoryPage({ data: { file } }) {
   return (
