@@ -2,18 +2,20 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 const centeredContentCss = css`
-  max-width: 1600px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (min-width: 1800px) {
+    max-width: 1600px;
+  }
 `;
 
 export const HeaderContainer = styled.header`
   padding-top: 3rem;
-  padding-bottom: 1rem;
+  padding-bottom: 4rem;
   padding-left: 1rem;
   padding-right: 1rem;
-
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
 export const Header = styled.div`
