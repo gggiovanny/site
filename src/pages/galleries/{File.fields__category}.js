@@ -1,29 +1,38 @@
 /* eslint-disable jsx-a11y/alt-text */
+import 'react-photo-view/dist/react-photo-view.css';
+
 import { graphql, Link } from 'gatsby';
 import React from 'react';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
 
 function ImageCategoryPage({ data }) {
   return (
     <Layout>
-      <ImageList>
-        {data.allFile.nodes.map(node => {
-          const { originalName } = node.childImageSharp.fluid;
-          return (
-            <Link to={node.photoPath}>
-              <img
-                key={node.id}
-                srcSet={node.childImageSharp.fluid.srcSet}
-                placeholder={originalName}
-                width="100%"
-                height="auto"
-                loading="lazy"
-              />
-            </Link>
-          );
-        })}
-      </ImageList>
+      <PhotoProvider bannerVisible={false}>
+        <ImageList>
+          {data.allFile.nodes.map(node => {
+            const { publicURL: src, childImageSharp, photoPath } = node;
+            const { originalName } = childImageSharp.fluid;
+
+            return (
+              <PhotoView key={node.id} src={src}>
+                {/* TODO: add link again */}
+                {/* <Link to={photoPath}> */}
+                <img
+                  src={src}
+                  placeholder={originalName}
+                  width="100%"
+                  height="auto"
+                  loading="lazy"
+                />
+                {/* </Link> */}
+              </PhotoView>
+            );
+          })}
+        </ImageList>
+      </PhotoProvider>
     </Layout>
   );
 }
@@ -37,10 +46,10 @@ export const query = graphql`
         fields {
           category
         }
+        publicURL
         childImageSharp {
           fluid {
             originalName
-            srcSet
           }
         }
       }
