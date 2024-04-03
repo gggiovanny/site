@@ -10,7 +10,7 @@ import { ImageList, Layout, Seo } from '../../components';
 function ImageCategoryPage({ data }) {
   return (
     <Layout>
-      <PhotoProvider bannerVisible={false}>
+      <PhotoProvider>
         <ImageList>
           {data.allFile.nodes.map(node => {
             const { publicURL: src, childImageSharp, photoPath } = node;
