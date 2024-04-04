@@ -7,6 +7,8 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
 
+const Photo = imageProps => <img width="100%" height="auto" loading="lazy" {...imageProps} />;
+
 function ImageCategoryPage({ data }) {
   return (
     <Layout>
@@ -14,20 +16,16 @@ function ImageCategoryPage({ data }) {
         <ImageList>
           {data.allFile.nodes.map(node => {
             const { publicURL: src, childImageSharp, photoPath } = node;
-            const { originalName } = childImageSharp.fluid;
+            const { originalName, srcSet } = childImageSharp.fluid;
 
             return (
-              <PhotoView key={node.id} src={src}>
-                {/* TODO: add link again */}
-                {/* <Link to={photoPath}> */}
-                <img
-                  src={src}
-                  placeholder={originalName}
-                  width="100%"
-                  height="auto"
-                  loading="lazy"
-                />
-                {/* </Link> */}
+              <PhotoView
+                key={node.id}
+                src={src} // this is the actual heavy image
+                render={() => <Photo srcSet={srcSet} placeholder={originalName} />}
+              >
+                {/* this is the preview displayed before open the actual heavier image */}
+                <Photo srcSet={srcSet} placeholder={originalName} />
               </PhotoView>
             );
           })}
@@ -50,6 +48,7 @@ export const query = graphql`
         childImageSharp {
           fluid {
             originalName
+            srcSet
           }
         }
       }
