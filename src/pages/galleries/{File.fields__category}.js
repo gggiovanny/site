@@ -2,24 +2,43 @@
 import 'react-photo-view/dist/react-photo-view.css';
 
 import styled from '@emotion/styled';
-import { graphql, Link } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import React from 'react';
+import { RiExternalLinkFill } from 'react-icons/ri';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
 
 const Photo = imageProps => <img width="100%" height="auto" loading="lazy" {...imageProps} />;
+
 const PhotoPreview = styled(Photo)`
   cursor: pointer;
 `;
 
+const ToolbarContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
 function ImageCategoryPage({ data }) {
+  const { nodes } = data.allFile;
+
+  const Toolbar = ({ index }) => {
+    const node = nodes[index];
+    const { photoPath } = node;
+    return (
+      <ToolbarContainer>
+        <RiExternalLinkFill onClick={() => navigate(photoPath)} />
+      </ToolbarContainer>
+    );
+  };
+
   return (
     <Layout>
-      <PhotoProvider>
+      <PhotoProvider toolbarRender={Toolbar}>
         <ImageList>
-          {data.allFile.nodes.map(node => {
-            const { publicURL: src, childImageSharp, photoPath } = node;
+          {nodes.map(node => {
+            const { publicURL: src, childImageSharp } = node;
             const { originalName, srcSet } = childImageSharp.fluid;
 
             return (
