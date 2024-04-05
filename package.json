@@ -18,7 +18,8 @@
     "deploy:build": "gatsby build",
     "deploy:publish": "gh-pages --no-history -d public",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "watermark": "node scripts/watermark.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -37,7 +38,8 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
-    "react-photo-view": "^1.2.4"
+    "react-photo-view": "^1.2.4",
+    "sharp": "^0.33.3"
   },
   "volta": {
     "node": "20.12.0",
