@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { RiExternalLinkFill, RiFileCopyFill } from 'react-icons/ri';
+import { RiDownloadCloudFill, RiExternalLinkFill, RiFileCopyFill } from 'react-icons/ri';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
@@ -29,13 +29,16 @@ function ImageCategoryPage({ data }) {
 
   const Toolbar = ({ index }) => {
     const node = nodes[index];
-    const { photoPath } = node;
+    const { photoPath, publicURL, childImageSharp } = node;
 
     return (
       <ToolbarContainer>
         <CopyToClipboard text={getFullUrl(photoPath)}>
           <RiFileCopyFill />
         </CopyToClipboard>
+        <a href={getFullUrl(publicURL)} download={childImageSharp.fluid.originalName}>
+          <RiDownloadCloudFill />
+        </a>
         <RiExternalLinkFill onClick={() => window.open(photoPath, '_blank')} />
       </ToolbarContainer>
     );
