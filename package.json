@@ -15,7 +15,7 @@
     "develop": "run-s clean develop:*",
     "develop:server": "gatsby develop",
     "deploy": "run-s clean deploy:*",
-    "deploy:build": "gatsby build --prefix-paths",
+    "deploy:build": "gatsby build",
     "deploy:publish": "gh-pages --no-history -d public",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
