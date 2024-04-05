@@ -2,10 +2,12 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import React from 'react';
-import { RiExternalLinkFill } from 'react-icons/ri';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { RiExternalLinkFill, RiFileCopyFill } from 'react-icons/ri';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
+import { useFullUrlBuilder } from '../../hooks';
 
 const Photo = React.forwardRef((imageProps, ref) => (
   <img ref={ref} width="100%" height="auto" loading="lazy" {...imageProps} />
@@ -23,11 +25,17 @@ const ToolbarContainer = styled.div`
 function ImageCategoryPage({ data }) {
   const { nodes } = data.allFile;
 
+  const { getFullUrl } = useFullUrlBuilder();
+
   const Toolbar = ({ index }) => {
     const node = nodes[index];
     const { photoPath } = node;
+
     return (
       <ToolbarContainer>
+        <CopyToClipboard text={getFullUrl(photoPath)}>
+          <RiFileCopyFill />
+        </CopyToClipboard>
         <RiExternalLinkFill onClick={() => window.open(photoPath, '_blank')} />
       </ToolbarContainer>
     );
