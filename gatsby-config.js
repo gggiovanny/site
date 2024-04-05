@@ -4,7 +4,7 @@
 module.exports = {
   siteMetadata: {
     title: 'Giovanny Baltazar',
-    siteUrl: 'https://gggiovanny.github.io/site',
+    siteUrl: 'https://giovanny.site/',
   },
   plugins: [
     'gatsby-plugin-emotion',
