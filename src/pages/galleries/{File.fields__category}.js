@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import styled from '@emotion/styled';
-import { graphql, navigate } from 'gatsby';
+import { graphql } from 'gatsby';
 import React from 'react';
 import { RiExternalLinkFill } from 'react-icons/ri';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
@@ -28,7 +28,7 @@ function ImageCategoryPage({ data }) {
     const { photoPath } = node;
     return (
       <ToolbarContainer>
-        <RiExternalLinkFill onClick={() => navigate(photoPath)} />
+        <RiExternalLinkFill onClick={() => window.open(photoPath, '_blank')} />
       </ToolbarContainer>
     );
   };
