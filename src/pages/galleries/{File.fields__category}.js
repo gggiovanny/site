@@ -1,6 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-import 'react-photo-view/dist/react-photo-view.css';
-
 import styled from '@emotion/styled';
 import { graphql, navigate } from 'gatsby';
 import React from 'react';

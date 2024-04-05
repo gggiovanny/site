@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('react-photo-view/dist/react-photo-view.css');
 
 :root {
   margin: 0;
@@ -11,4 +12,38 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+/* Overrides for react-photo-view/dist/react-photo-view.css */
+
+.PhotoView-Slider__BannerWrap {
+  background-color: unset;
+
+  svg {
+    border-radius: 50%;
+    padding: 8px;
+    margin-top: 16px;
+    margin-right: 16px;
+
+
+
+    background-color: rgba(255, 255, 255, .1);
+    transition: background-color .3s ease;
+
+    color: black;
+    fill: black;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, .3);
+    }
+  }
+}
+
+.PhotoView-Slider__ArrowLeft>svg,
+.PhotoView-Slider__ArrowRight>svg {
+  border-radius: 50% !important;
+}
+
+.PhotoView-Slider__Backdrop {
+  background: rgb(255, 255, 255) !important;
 }
