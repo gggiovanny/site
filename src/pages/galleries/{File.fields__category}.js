@@ -9,7 +9,9 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
 
-const Photo = imageProps => <img width="100%" height="auto" loading="lazy" {...imageProps} />;
+const Photo = React.forwardRef((imageProps, ref) => (
+  <img ref={ref} width="100%" height="auto" loading="lazy" {...imageProps} />
+));
 
 const PhotoPreview = styled(Photo)`
   cursor: pointer;
