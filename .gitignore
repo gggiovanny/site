@@ -3,4 +3,3 @@ node_modules/
 public
 .vscode/*.json
 !.vscode/*.example
-**/.DS_Store
