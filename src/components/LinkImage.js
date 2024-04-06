@@ -40,7 +40,10 @@ const Container = styled(Link)`
 const Image = styled(GatsbyImage)`
   display: block;
   width: 100%;
-  height: auto;
+  height: 0;
+  padding-bottom: 66.6%; // this controls the aspect ratio
+  object-fit: cover;
+  object-position: center;
 `;
 
 const Text = styled.span`
