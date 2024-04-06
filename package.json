@@ -16,7 +16,7 @@
     "develop:server": "gatsby develop",
     "deploy": "run-s clean watermark deploy:*",
     "deploy:build": "gatsby build",
-    "deploy:publish": "gh-pages --no-history -d public",
+    "deploy:publish": "gh-pages --no-history --cname giovanny.site -d public",
     "deploy:removefiles": "git clean -f",
     "deploy:removechanges": "git checkout -- .",
     "serve": "gatsby serve",
