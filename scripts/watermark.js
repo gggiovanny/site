@@ -30,8 +30,8 @@ async function processImage(galleryPath, photoName) {
   const newFilePath = path.join(galleryPath, `${basename}-watermarked.${extension}`);
 
   await addWatermark(originalFilePath, newFilePath);
-  fs.unlinkSync(newFilePath);
-  fs.renameSync(originalFilePath, newFilePath);
+  fs.unlinkSync(originalFilePath);
+  fs.renameSync(newFilePath, originalFilePath);
 }
 
 const getPhotoPaths = () =>
