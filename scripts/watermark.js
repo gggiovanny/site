@@ -1,36 +1,46 @@
+/* eslint-disable no-console */
 const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const folderPath = path.join(__dirname, '../src/images/photos/people/');
+const photosPath = path.join(__dirname, '../src/images/photos');
 const watermarkPath = path.join(__dirname, '../src/images/watermark.png');
-console.log({ watermarkPath });
 
-fs.readdir(folderPath, (err, files) => {
-  if (err) {
-    console.error('Error reading directory:', err);
-    return;
-  }
+console.log(`Adding watermark located at ${watermarkPath}...`);
 
-  files.forEach(file => {
-    console.log(file);
-    processImage(folderPath, file);
+eachFile(photosPath, galleryFolder => {
+  const galleryPath = path.join(photosPath, galleryFolder);
+  eachFile(galleryPath, photoName => {
+    processImage(galleryPath, photoName);
   });
 });
 
-function processImage(folderPath, fileName) {
-  const originalFilePath = path.join(folderPath, fileName);
+function eachFile(dir, loopCallback) {
+  fs.readdir(dir, (err, files) => {
+    if (err) {
+      console.error('Error reading directory:', err);
+      return;
+    }
 
-  const [basename, extension] = fileName.split('.');
-  const newFilePath = path.join(folderPath, `${basename}-watermarked.${extension}`);
+    files.forEach(file => {
+      loopCallback(file);
+    });
+  });
+}
+
+function processImage(galleryPath, photoName) {
+  const originalFilePath = path.join(galleryPath, photoName);
+
+  const [basename, extension] = photoName.split('.');
+  const newFilePath = path.join(galleryPath, `${basename}-watermarked.${extension}`);
 
   sharp(originalFilePath)
     .composite([{ input: watermarkPath, gravity: 'southeast' }])
     .toFile(newFilePath, (err, info) => {
       if (err) {
-        console.error('Error processing image:', err);
+        console.error(`Error processing image ${originalFilePath}:`, err);
       } else {
-        console.log('Image processed successfully:', info);
+        console.log('Image processed successfully:', { originalFilePath, ...info });
       }
     });
 }
