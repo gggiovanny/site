@@ -29,6 +29,8 @@ function eachFile(dir, loopCallback) {
 }
 
 function processImage(galleryPath, photoName) {
+  if (photoName === 'cover.jpg') return;
+
   const originalFilePath = path.join(galleryPath, photoName);
 
   const [basename, extension] = photoName.split('.');
