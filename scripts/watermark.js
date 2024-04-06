@@ -9,15 +9,27 @@ const watermarkPath = path.join(__dirname, '../src/images/watermark.png');
 const addWatermark = (originalFilePath, newFilePath) =>
   new Promise((resolve, reject) => {
     sharp(originalFilePath)
-      .composite([{ input: watermarkPath, gravity: 'southeast' }])
-      .toFile(newFilePath, (err, info) => {
-        if (err) {
-          console.error(`Error processing image ${originalFilePath}:`, err);
-          reject();
-        } else {
-          console.log('Image processed successfully:', { originalFilePath, ...info });
-          resolve();
+      .metadata()
+      .then(({ format, width, height, channels, premultiplied, size, orientation }) => {
+        // Correct the orientation if necessary
+        let rotation = 0;
+        if (orientation) {
+          // Convert orientation to degrees
+          rotation = (orientation - 1) * 90;
         }
+
+        return sharp(originalFilePath)
+          .rotate(rotation) // Apply the corrected rotation
+          .composite([{ input: watermarkPath, gravity: 'southeast' }])
+          .toFile(newFilePath, (err, info) => {
+            if (err) {
+              console.error(`Error processing image ${originalFilePath}:`, err);
+              reject();
+            } else {
+              console.log('Image processed successfully:', { originalFilePath, ...info });
+              resolve();
+            }
+          });
       });
   });
 
