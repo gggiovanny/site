@@ -17,6 +17,8 @@
     "deploy": "run-s clean deploy:*",
     "deploy:build": "gatsby build",
     "deploy:publish": "gh-pages --no-history -d public",
+    "deploy:removefiles": "git clean -f",
+    "deploy:removechanges": "git checkout -- .",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "watermark": "node scripts/watermark.js"
