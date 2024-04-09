@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { graphql } from 'gatsby';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Layout, Seo } from '../../components';
+import NotFoundPage from '../404';
 
 function ImageCategoryPage({ data: { file } }) {
+  if (!file) return <NotFoundPage />;
+
   return (
     <Layout>
       <img
