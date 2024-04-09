@@ -22,7 +22,7 @@ function ImageCategoryPage({ data: { file } }) {
 
 export const query = graphql`
   query ($name: String) {
-    file(name: { eq: $name }) {
+    file(name: { eq: $name }, relativeDirectory: { regex: "/photo/" }) {
       id
       name
       fields {
