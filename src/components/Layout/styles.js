@@ -11,6 +11,26 @@ const centeredContentCss = css`
   }
 `;
 
+const fontsCss = css`
+  font-family: 'Raleway', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+`;
+
+const cleanLinksCss = css`
+  a {
+    /* styles that makes links to not look like links */
+    text-decoration: none;
+    color: #aaa;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: #111;
+  }
+`;
+
 export const HeaderContainer = styled.header`
   padding-top: 3rem;
   padding-bottom: 4rem;
@@ -20,37 +40,18 @@ export const HeaderContainer = styled.header`
 
 export const Header = styled.div`
   ${centeredContentCss}
-
-  font-family: 'Raleway', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-  font-size: 1.2rem;
+  ${fontsCss}
+  ${cleanLinksCss}
   /* flex stuff */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  a {
-    /* styles that makes links to not look like links */
-    text-decoration: none;
-    color: inherit;
-  }
 `;
 
 export const LogoContainer = styled.div``;
 
 export const Nav = styled.nav`
-  li {
-    color: #aaa;
-    transition: color 0.2s ease;
-  }
-
-  li:hover {
-    color: #111;
-  }
-
   ul {
     list-style-type: none;
     margin: 0;
@@ -64,4 +65,30 @@ export const Page = styled.div``;
 export const Main = styled.main`
   padding: 1rem;
   ${centeredContentCss}
+`;
+
+export const Footer = styled.footer`
+  ${centeredContentCss}
+  ${fontsCss}
+  ${cleanLinksCss}
+
+  color: #aaa;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  a {
+    font-size: 20px;
+  }
 `;
