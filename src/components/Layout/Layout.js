@@ -1,11 +1,11 @@
 import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
+import { RiArrowLeftSLine } from 'react-icons/ri';
 
-import { author } from '../../utils/config';
 import { Header, HeaderContainer, LogoContainer, Main, Nav, Page } from './styles';
 
-export const Layout = ({ pageTitle, children }) => {
+export const Layout = ({ pageTitle, parentUrl, children }) => {
   return (
     <Page>
       <HeaderContainer>
@@ -21,9 +21,13 @@ export const Layout = ({ pageTitle, children }) => {
           </LogoContainer>
           <Nav>
             <ul>
-              <li>
-                <a href={`mailto:${author.email}`}>@contact</a>
-              </li>
+              {parentUrl && (
+                <li>
+                  <Link to={parentUrl}>
+                    <RiArrowLeftSLine size={40} color="black" />
+                  </Link>{' '}
+                </li>
+              )}
             </ul>
           </Nav>
         </Header>

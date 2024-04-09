@@ -45,7 +45,7 @@ function ImageCategoryPage({ data }) {
   };
 
   return (
-    <Layout>
+    <Layout parentUrl="/">
       <PhotoProvider toolbarRender={Toolbar}>
         <ImageList>
           {nodes.map(node => {

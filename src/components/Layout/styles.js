@@ -55,6 +55,7 @@ export const Nav = styled.nav`
     list-style-type: none;
     margin: 0;
     overflow: hidden;
+    line-height: 0;
   }
 `;
 
