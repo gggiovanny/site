@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import React from 'react';
@@ -9,7 +8,8 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
 import { useFullUrlBuilder } from '../../hooks';
-import { cleanLinksCss, gray, mainfontCss } from '../../styles';
+import { gray, mainfontCss } from '../../styles';
+import NotFoundPage from '../404';
 
 const Photo = React.forwardRef((imageProps, ref) => (
   <img ref={ref} width="100%" height="auto" loading="lazy" {...imageProps} />
@@ -39,6 +39,8 @@ function ImageCategoryPage({ data }) {
   const { nodes } = data.allFile;
 
   const { getFullUrl } = useFullUrlBuilder();
+
+  if (!nodes?.length) return <NotFoundPage />;
 
   const Toolbar = ({ index }) => {
     const node = nodes[index];
