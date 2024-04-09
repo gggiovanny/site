@@ -14,7 +14,7 @@ export const Layout = ({ pageTitle, children }) => {
             <Link to="/">
               <StaticImage
                 height={40}
-                src="../../images/header-logo.png"
+                src="../../images/header-logo.svg"
                 alt="giovanny.baltazar logo"
               />
             </Link>
