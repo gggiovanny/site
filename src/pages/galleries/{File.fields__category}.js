@@ -40,7 +40,7 @@ function ImageCategoryPage({ data }) {
 
   const { getFullUrl } = useFullUrlBuilder();
 
-  if (!nodes?.length) return <NotFoundPage />;
+  if (!nodes[0]?.childImageSharp) return <NotFoundPage />;
 
   const Toolbar = ({ index }) => {
     const node = nodes[index];
