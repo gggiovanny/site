@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import { cleanLinksCss, gray, mainfontCss } from '../../styles';
+
 const centeredContentCss = css`
   max-width: 1200px;
   margin-left: auto;
@@ -8,26 +10,6 @@ const centeredContentCss = css`
 
   @media (min-width: 1800px) {
     max-width: 1600px;
-  }
-`;
-
-const fontsCss = css`
-  font-family: 'Raleway', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-`;
-
-const cleanLinksCss = css`
-  a {
-    /* styles that makes links to not look like links */
-    text-decoration: none;
-    color: #aaa;
-    transition: color 0.2s ease;
-  }
-
-  a:hover {
-    color: #111;
   }
 `;
 
@@ -40,13 +22,16 @@ export const HeaderContainer = styled.header`
 
 export const Header = styled.div`
   ${centeredContentCss}
-  ${fontsCss}
-  ${cleanLinksCss}
+  ${mainfontCss}
   /* flex stuff */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  a {
+    ${cleanLinksCss}
+  }
 `;
 
 export const LogoContainer = styled.div``;
@@ -69,16 +54,19 @@ export const Main = styled.main`
 
 export const Footer = styled.footer`
   ${centeredContentCss}
-  ${fontsCss}
-  ${cleanLinksCss}
+  ${mainfontCss}
 
-  color: #aaa;
+  color: ${gray};
   margin-top: 6rem;
   margin-bottom: 2rem;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  a {
+    ${cleanLinksCss}
+  }
 
   span {
     width: 100%;

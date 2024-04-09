@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import React from 'react';
@@ -8,6 +9,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
 import { useFullUrlBuilder } from '../../hooks';
+import { cleanLinksCss, gray, mainfontCss } from '../../styles';
 
 const Photo = React.forwardRef((imageProps, ref) => (
   <img ref={ref} width="100%" height="auto" loading="lazy" {...imageProps} />
@@ -20,6 +22,17 @@ const PhotoPreview = styled(Photo)`
 const ToolbarContainer = styled.div`
   display: flex;
   gap: 0.5rem;
+`;
+
+const BackToTopContainer = styled.div`
+  ${mainfontCss}
+
+  color: ${gray};
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  white-space: pre-wrap;
 `;
 
 function ImageCategoryPage({ data }) {
@@ -65,6 +78,13 @@ function ImageCategoryPage({ data }) {
           })}
         </ImageList>
       </PhotoProvider>
+
+      <BackToTopContainer>
+        <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <span class="arrow">↑</span>
+          <span class="preserve-whitespace"> Back to Top</span>
+        </div>
+      </BackToTopContainer>
     </Layout>
   );
 }
