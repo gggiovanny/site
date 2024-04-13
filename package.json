@@ -21,7 +21,8 @@
     "deploy:removechanges": "git checkout -- .",
     "serve": "gatsby serve",
     "watermark": "node scripts/watermark.js",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "postinstall": "cp .vscode/settings.json.example .vscode/settings.json && cp .vscode/tasks.json.example .vscode/tasks.json"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
