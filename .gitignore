@@ -3,3 +3,6 @@ node_modules/
 public
 .vscode/*.json
 !.vscode/*.example
+
+# mac stuff
+**/.DS_Store
