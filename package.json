@@ -14,7 +14,7 @@
     "start": "run-s clean develop:*",
     "develop": "run-s clean develop:*",
     "develop:server": "gatsby develop",
-    "deploy": "run-s clean watermark deploy:*",
+    "deploy": "run-s clean deploy:*",
     "deploy:build": "gatsby build",
     "deploy:publish": "gh-pages --no-history --cname giovanny.site -d public",
     "deploy:removefiles": "git clean -f",
