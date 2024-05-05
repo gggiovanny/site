@@ -11,6 +11,7 @@ import { useFullUrlBuilder } from '../../hooks';
 import { gray, mainfontCss } from '../../styles';
 import NotFoundPage from '../404';
 
+// react-photo-view needs a plain "img" to work
 const Photo = React.forwardRef((imageProps, ref) => (
   <img ref={ref} width="100%" height="auto" loading="lazy" {...imageProps} />
 ));
@@ -64,17 +65,17 @@ function ImageCategoryPage({ data }) {
       <PhotoProvider toolbarRender={Toolbar}>
         <ImageList>
           {nodes.map(node => {
-            const { publicURL: src, childImageSharp } = node;
+            const { childImageSharp } = node;
             const { originalName, srcSet } = childImageSharp.fluid;
+            const { src } = childImageSharp.fixed;
 
             return (
               <PhotoView
                 key={node.id}
                 src={src} // this is the actual heavy image
-                render={() => <Photo srcSet={srcSet} placeholder={originalName} />}
               >
                 {/* this is the preview displayed before open the actual heavier image */}
-                <PhotoPreview srcSet={srcSet} placeholder={originalName} />
+                <PhotoPreview srcSet={srcSet} placeholder={originalName} anuma="PhotoPreview" />
               </PhotoView>
             );
           })}
@@ -105,6 +106,9 @@ export const query = graphql`
           fluid {
             originalName
             srcSet
+          }
+          fixed(width: 2048) {
+            src
           }
         }
       }

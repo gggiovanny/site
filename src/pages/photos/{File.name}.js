@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { graphql } from 'gatsby';
-import React, { useEffect } from 'react';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import React from 'react';
 
 import { Layout, Seo } from '../../components';
 import NotFoundPage from '../404';
@@ -10,15 +11,8 @@ function ImageCategoryPage({ data: { file } }) {
 
   return (
     <Layout>
-      <img
-        key={file.id}
-        src={file.childImageSharp.fluid.originalImg}
-        placeholder={file.childImageSharp.fluid.originalName}
-        width="100%"
-        height="auto"
-        loading="lazy"
-      />
-      {file.childImageSharp.fluid.originalName}
+      <GatsbyImage image={file.childImageSharp.gatsbyImageData} alt={file.name} />
+      {file.name}
     </Layout>
   );
 }
@@ -32,10 +26,7 @@ export const query = graphql`
         category
       }
       childImageSharp {
-        fluid {
-          originalName
-          originalImg
-        }
+        gatsbyImageData(width: 4096, placeholder: BLURRED)
       }
     }
   }
