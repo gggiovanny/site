@@ -63,6 +63,7 @@ export const FooterContainer = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
 
   a {
     ${cleanLinksCss}
@@ -79,4 +80,12 @@ export const FooterContainer = styled.footer`
   a {
     font-size: 20px;
   }
+`;
+
+export const IconWithName = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 16px;
 `;

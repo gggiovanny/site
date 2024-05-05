@@ -1,8 +1,8 @@
 import React from 'react';
-import { RiGithubFill, RiInstagramLine, RiLinkedinFill } from 'react-icons/ri';
+import { RiCodeSSlashFill, RiGithubFill, RiInstagramLine, RiLinkedinFill } from 'react-icons/ri';
 
 import { author } from '../../utils';
-import { FooterContainer } from './styles';
+import { FooterContainer, IconWithName } from './styles';
 
 export function Footer() {
   return (
@@ -25,6 +25,14 @@ export function Footer() {
           cv
         </a>
         <a href={`mailto:${author.email}`}>@email</a>
+      </span>
+      <span>
+        <a href="https://github.com/gggiovanny/site" target="_blank" rel="noreferrer">
+          <IconWithName>
+            <RiCodeSSlashFill size={20} />
+            source code
+          </IconWithName>
+        </a>
       </span>
     </FooterContainer>
   );
