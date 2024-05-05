@@ -52,7 +52,7 @@ export const Main = styled.main`
   ${centeredContentCss}
 `;
 
-export const Footer = styled.footer`
+export const FooterContainer = styled.footer`
   ${centeredContentCss}
   ${mainfontCss}
 
