@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import styled from '@emotion/styled';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { RiDownloadCloudFill, RiExternalLinkFill, RiFileCopyFill } from 'react-icons/ri';
@@ -8,7 +8,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
 import { useFullUrlBuilder } from '../../hooks';
-import { gray, mainfontCss } from '../../styles';
+import { cleanLinksCss, gray, mainfontCss } from '../../styles';
 import NotFoundPage from '../404';
 
 // react-photo-view needs a plain "img" to work
@@ -31,9 +31,17 @@ const BackToTopContainer = styled.div`
   color: ${gray};
   margin-top: 5rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
   cursor: pointer;
   white-space: pre-wrap;
+
+  a {
+    ${cleanLinksCss}
+  }
 `;
 
 function ImageCategoryPage({ data }) {
@@ -83,9 +91,9 @@ function ImageCategoryPage({ data }) {
       </PhotoProvider>
 
       <BackToTopContainer>
-        <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <span class="arrow">↑</span>
-          <span class="preserve-whitespace"> Back to Top</span>
+        <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑ Back to Top</div>
+        <div>
+          <Link to="/">⌂ Return to Home</Link>
         </div>
       </BackToTopContainer>
     </Layout>
