@@ -7,7 +7,7 @@ import { Layout, Seo } from '../../components';
 import NotFoundPage from '../404';
 
 function ImageCategoryPage({ data: { file } }) {
-  if (!file) return <NotFoundPage />;
+  if (!file?.childImageSharp?.gatsbyImageData) return <NotFoundPage />;
 
   return (
     <Layout>

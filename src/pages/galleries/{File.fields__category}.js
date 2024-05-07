@@ -49,7 +49,7 @@ function ImageCategoryPage({ data }) {
 
   const { getFullUrl } = useFullUrlBuilder();
 
-  if (!nodes[0]?.childImageSharp) return <NotFoundPage />;
+  if (!nodes[0]?.childImageSharp?.fluid) return <NotFoundPage />;
 
   const Toolbar = ({ index }) => {
     const node = nodes[index];
@@ -73,6 +73,8 @@ function ImageCategoryPage({ data }) {
       <PhotoProvider toolbarRender={Toolbar}>
         <ImageList>
           {nodes.map(node => {
+            if (!node.childImageSharp?.fluid?.srcSet) return null;
+
             const { childImageSharp } = node;
             const { originalName, srcSet } = childImageSharp.fluid;
             const { src } = childImageSharp.fixed;
