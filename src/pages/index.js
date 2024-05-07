@@ -26,11 +26,13 @@ function IndexPage({ data }) {
 
 export const query = graphql`
   query {
-    allFile(filter: { relativeDirectory: { regex: "/photos/" }, name: { eq: "cover" } }) {
+    allFile(
+      filter: { relativeDirectory: { regex: "/photos/" }, name: { eq: "cover" } }
+      sort: { changeTime: DESC }
+    ) {
       nodes {
         galleryPath: gatsbyPath(filePath: "/galleries/{File.fields__category}")
         id
-        name
         fields {
           category
         }
