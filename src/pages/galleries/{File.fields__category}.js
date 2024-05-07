@@ -102,7 +102,10 @@ function ImageCategoryPage({ data }) {
 
 export const query = graphql`
   query ($fields__category: String) {
-    allFile(filter: { fields: { category: { eq: $fields__category } }, name: { ne: "cover" } }) {
+    allFile(
+      filter: { fields: { category: { eq: $fields__category } }, name: { ne: "cover" } }
+      sort: { changeTime: DESC }
+    ) {
       nodes {
         photoPath: gatsbyPath(filePath: "/photos/{File.name}")
         id
