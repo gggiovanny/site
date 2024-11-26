@@ -9,6 +9,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { ImageList, Layout, Seo } from '../../components';
 import { useFullUrlBuilder } from '../../hooks';
 import { cleanLinksCss, gray, mainfontCss } from '../../styles';
+import { getShareText } from '../../utils/getShareText';
 import NotFoundPage from '../404';
 
 // react-photo-view needs a plain "img" to work
@@ -54,10 +55,12 @@ function ImageCategoryPage({ data }) {
   const Toolbar = ({ index }) => {
     const node = nodes[index];
     const { photoPath, publicURL, childImageSharp } = node;
+    const { technicalDescription } = node.fields;
+    const fullPhotoUrl = getFullUrl(photoPath);
 
     return (
       <ToolbarContainer>
-        <CopyToClipboard text={getFullUrl(photoPath)}>
+        <CopyToClipboard text={getShareText({ fullPhotoUrl, technicalDescription })}>
           <RiFileCopyFill />
         </CopyToClipboard>
         <a href={getFullUrl(publicURL)} download={childImageSharp.fluid.originalName}>
@@ -113,6 +116,7 @@ export const query = graphql`
         id
         fields {
           category
+          technicalDescription
         }
         publicURL
         childImageSharp {
