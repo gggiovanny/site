@@ -11,21 +11,29 @@ exports.onCreateNode = ({ node, actions }) => {
   const category = isPhoto ? node.dir.split('/').at(-1) : null;
   createNodeField({ node, name: 'category', value: category });
 
-  if (!isPhoto || !node.absolutePath.endsWith('.jpg')) return;
+  if (!isPhoto) return;
 
   ExifReader.load(node.absolutePath).then(tags => {
     const v = (k) => tags[k]?.description || '';
+    const getModel = () => {
+      if (v('Model').includes(v('Make'))) return v('Model');
+      return `${v('Make')} ${v('Model')}`;
+    }
+    const getSoftware = () => {
+      if (v('Software').includes(v('Model'))) return 'Sin edición.';
+      return `Editado en ${v('Software')}.`;
+    }
 
-    const technicalDescription = v('Make') && [
-      `${getFormattedDate(v('DateCreated'))}`,
-      `${v('Make')} ${v('Model')}`,
+    const technicalDescription = v('FNumber') && [
+      v('DateCreated') && `${getFormattedDate(v('DateCreated'))}`,
+      `${getModel()}`,
       `Lens ${v('LensModel')}`,
       `${v('FocalLength')}`,
       `${v('FNumber')}`,
       `${v('ExposureTime')} sec.`,
       `ISO ${v('ISOSpeedRatings')}`,
-      `Editado en ${v('Software')}.`
-    ].join(' | ');
+      getSoftware()
+    ].filter(Boolean).join(' | ');
 
     createNodeField({ node, name: 'technicalDescription', value: technicalDescription });
   });
