@@ -2,14 +2,11 @@
 import styled from '@emotion/styled';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { RiDownloadCloudFill, RiExternalLinkFill, RiFileCopyFill } from 'react-icons/ri';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
-import { useFullUrlBuilder } from '../../hooks';
+import { PhotoToolbar } from '../../components/PhotoToolbar';
 import { cleanLinksCss, gray, mainfontCss } from '../../styles';
-import { getShareText } from '../../utils/getShareText';
 import NotFoundPage from '../404';
 
 // react-photo-view needs a plain "img" to work
@@ -19,11 +16,6 @@ const Photo = React.forwardRef((imageProps, ref) => (
 
 const PhotoPreview = styled(Photo)`
   cursor: pointer;
-`;
-
-const ToolbarContainer = styled.div`
-  display: flex;
-  gap: 0.5rem;
 `;
 
 const BackToTopContainer = styled.div`
@@ -48,26 +40,17 @@ const BackToTopContainer = styled.div`
 function ImageCategoryPage({ data }) {
   const { nodes } = data.allFile;
 
-  const { getFullUrl } = useFullUrlBuilder();
-
   if (!nodes[0]?.childImageSharp?.fluid) return <NotFoundPage />;
 
   const Toolbar = ({ index }) => {
     const node = nodes[index];
-    const { photoPath, publicURL, childImageSharp } = node;
-    const { technicalDescription } = node.fields;
-    const fullPhotoUrl = getFullUrl(photoPath);
-
     return (
-      <ToolbarContainer>
-        <CopyToClipboard text={getShareText({ fullPhotoUrl, technicalDescription })}>
-          <RiFileCopyFill />
-        </CopyToClipboard>
-        <a href={getFullUrl(publicURL)} download={childImageSharp.fluid.originalName}>
-          <RiDownloadCloudFill />
-        </a>
-        <RiExternalLinkFill onClick={() => window.open(photoPath, '_blank')} />
-      </ToolbarContainer>
+      <PhotoToolbar
+        publicURL={node.publicURL}
+        downloadName={node.childImageSharp.fluid.originalName}
+        photoPath={node.photoPath}
+        technicalDescription={node.fields.technicalDescription}
+      />
     );
   };
 
