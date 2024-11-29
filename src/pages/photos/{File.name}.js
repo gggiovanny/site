@@ -4,11 +4,11 @@ import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { RiDownloadCloudFill, RiExternalLinkFill, RiFileCopyFill } from 'react-icons/ri';
+import { RiDownloadCloudFill, RiFileCopyFill } from 'react-icons/ri';
 
 import { Layout, Seo } from '../../components';
 import { PhotoPagination } from '../../components/PhotoPagination';
-import { getFullUrl } from '../../utils';
+import { useFullUrlBuilder } from '../../hooks';
 import { getShareText } from '../../utils/getShareText';
 import NotFoundPage from '../404';
 
@@ -42,6 +42,7 @@ const ToolbarContainer = styled.div`
 `;
 
 function ImageCategoryPage({ data: { file } }) {
+  const { getFullUrl } = useFullUrlBuilder();
   if (!file?.childImageSharp?.gatsbyImageData) return <NotFoundPage />;
 
   const fullPhotoUrl = getFullUrl(file.photoPath);

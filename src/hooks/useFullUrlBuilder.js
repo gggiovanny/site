@@ -3,13 +3,19 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { getFullUrl } from '../utils';
 
 export const useFullUrlBuilder = () => {
-  const queryResult = useStaticQuery(graphql`
+  const result = useStaticQuery(graphql`
     {
       site {
         pathPrefix
+        siteMetadata {
+          siteUrl
+        }
       }
     }
   `);
 
-  return { getFullUrl: url => getFullUrl(url, queryResult.site.pathPrefix) };
+  const isBrowser = typeof window !== "undefined"
+  const siteUrl = isBrowser ? window.location.origin : result.site.siteMetadata.siteUrl
+
+  return { getFullUrl: url => getFullUrl(url, result.site.pathPrefix, siteUrl) };
 };
