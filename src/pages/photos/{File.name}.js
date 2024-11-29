@@ -3,9 +3,13 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import { RiDownloadCloudFill, RiExternalLinkFill, RiFileCopyFill } from 'react-icons/ri';
 
 import { Layout, Seo } from '../../components';
 import { PhotoPagination } from '../../components/PhotoPagination';
+import { getFullUrl } from '../../utils';
+import { getShareText } from '../../utils/getShareText';
 import NotFoundPage from '../404';
 
 const Description = styled.div`
@@ -25,11 +29,37 @@ const StyledPhotoPagination = styled(PhotoPagination)`
   margin-bottom: 1rem;
 `;
 
+const ToolbarContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+  color: #888;
+  a {
+    color: #888;
+  }
+
+`;
+
 function ImageCategoryPage({ data: { file } }) {
   if (!file?.childImageSharp?.gatsbyImageData) return <NotFoundPage />;
 
+  const fullPhotoUrl = getFullUrl(file.photoPath);
+  const { technicalDescription } = file.fields;
+  const { publicURL } = file;
+  const downloadName = `${file.name}.${file.extension}`;
+
   return (
     <Layout renderUp={() => <StyledPhotoPagination category={file.fields.category} photoPath={file.photoPath} />}>
+
+      <ToolbarContainer>
+        <CopyToClipboard text={getShareText({ fullPhotoUrl, technicalDescription })}>
+          <RiFileCopyFill />
+        </CopyToClipboard>
+        <a href={getFullUrl(publicURL)} download={downloadName}>
+          <RiDownloadCloudFill />
+        </a>
+      </ToolbarContainer>
       <GatsbyImage image={file.childImageSharp.gatsbyImageData} alt={file.name} />
       <Description>{file.fields.technicalDescription}</Description>
     </Layout>
@@ -41,11 +71,13 @@ export const query = graphql`
     file(name: { eq: $name }, relativeDirectory: { regex: "/photo/" }) {
       id
       name
+      extension
       photoPath: gatsbyPath(filePath: "/photos/{File.name}")
       fields {
         category
         technicalDescription
       }
+      publicURL
       childImageSharp {
         gatsbyImageData(width: 4096, placeholder: BLURRED)
       }
