@@ -5,6 +5,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 
 import { Layout, Seo } from '../../components';
+import { PhotoPagination } from '../../components/PhotoPagination';
 import NotFoundPage from '../404';
 
 const Description = styled.div`
@@ -20,11 +21,15 @@ const Description = styled.div`
   }
 `;
 
+const StyledPhotoPagination = styled(PhotoPagination)`
+  margin-bottom: 1rem;
+`;
+
 function ImageCategoryPage({ data: { file } }) {
   if (!file?.childImageSharp?.gatsbyImageData) return <NotFoundPage />;
 
   return (
-    <Layout>
+    <Layout renderUp={() => <StyledPhotoPagination category={file.fields.category} photoPath={file.photoPath} />}>
       <GatsbyImage image={file.childImageSharp.gatsbyImageData} alt={file.name} />
       <Description>{file.fields.technicalDescription}</Description>
     </Layout>
@@ -36,6 +41,7 @@ export const query = graphql`
     file(name: { eq: $name }, relativeDirectory: { regex: "/photo/" }) {
       id
       name
+      photoPath: gatsbyPath(filePath: "/photos/{File.name}")
       fields {
         category
         technicalDescription

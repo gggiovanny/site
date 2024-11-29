@@ -6,7 +6,7 @@ import { RiArrowLeftSLine } from 'react-icons/ri';
 import { Footer } from './Footer';
 import { Header, HeaderContainer, LogoContainer, Main, Nav, Page } from './styles';
 
-export const Layout = ({ pageTitle, parentUrl, children }) => {
+export const Layout = ({ pageTitle, parentUrl, children, renderUp }) => {
   return (
     <Page>
       <HeaderContainer>
@@ -37,7 +37,7 @@ export const Layout = ({ pageTitle, parentUrl, children }) => {
         {pageTitle && <h1>{pageTitle}</h1>}
         {children}
       </Main>
-      <Footer />
+      <Footer renderUp={renderUp} />
     </Page>
   );
 };

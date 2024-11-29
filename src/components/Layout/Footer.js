@@ -4,9 +4,10 @@ import { RiCodeSSlashFill, RiGithubFill, RiInstagramLine, RiLinkedinFill } from 
 import { author } from '../../utils';
 import { FooterContainer, IconWithName } from './styles';
 
-export function Footer() {
+export function Footer({ renderUp }) {
   return (
     <FooterContainer>
+      {renderUp && renderUp()}
       <span>
         <a href="https://www.instagram.com/giovanny.baltazar" target="_blank" rel="noreferrer">
           <RiInstagramLine size={24} />
