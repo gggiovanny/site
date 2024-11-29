@@ -88,7 +88,7 @@ function ImageCategoryPage({ data }) {
                 src={src} // this is the actual heavy image
               >
                 {/* this is the preview displayed before open the actual heavier image */}
-                <PhotoPreview srcSet={srcSet} placeholder={originalName} anuma="PhotoPreview" />
+                <PhotoPreview srcSet={srcSet} placeholder={originalName} />
               </PhotoView>
             );
           })}
