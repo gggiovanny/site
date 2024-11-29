@@ -54,7 +54,7 @@ function ImageCategoryPage({ data }) {
 
   const Toolbar = ({ index }) => {
     const node = nodes[index];
-    const { photoPath, publicURL, childImageSharp } = node;
+    const { photoPath, publicURL } = node;
     const { technicalDescription } = node.fields;
     const fullPhotoUrl = getFullUrl(photoPath);
 
@@ -63,7 +63,7 @@ function ImageCategoryPage({ data }) {
         <CopyToClipboard text={getShareText({ fullPhotoUrl, technicalDescription })}>
           <RiFileCopyFill />
         </CopyToClipboard>
-        <a href={getFullUrl(publicURL)} download={childImageSharp.fluid.originalName}>
+        <a href={getFullUrl(publicURL)} download>
           <RiDownloadCloudFill />
         </a>
         <RiExternalLinkFill onClick={() => window.open(photoPath, '_blank')} />

@@ -48,7 +48,6 @@ function ImageCategoryPage({ data: { file } }) {
   const fullPhotoUrl = getFullUrl(file.photoPath);
   const { technicalDescription } = file.fields;
   const { publicURL } = file;
-  const downloadName = `${file.name}.${file.extension}`;
 
   return (
     <Layout renderUp={() => <StyledPhotoPagination category={file.fields.category} photoPath={file.photoPath} />}>
@@ -57,7 +56,7 @@ function ImageCategoryPage({ data: { file } }) {
         <CopyToClipboard text={getShareText({ fullPhotoUrl, technicalDescription })}>
           <RiFileCopyFill />
         </CopyToClipboard>
-        <a href={getFullUrl(publicURL)} download={downloadName}>
+        <a href={getFullUrl(publicURL)} download>
           <RiDownloadCloudFill />
         </a>
       </ToolbarContainer>
@@ -72,7 +71,6 @@ export const query = graphql`
     file(name: { eq: $name }, relativeDirectory: { regex: "/photo/" }) {
       id
       name
-      extension
       photoPath: gatsbyPath(filePath: "/photos/{File.name}")
       fields {
         category
