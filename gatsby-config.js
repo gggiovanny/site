@@ -6,9 +6,7 @@ module.exports = {
     title: 'Giovanny Baltazar',
     siteUrl: 'https://giovanny.site/',
   },
-  flags: {
-    DEV_SSR: true
-  },
+  // flags: { DEV_SSR: true },
   plugins: [
     'gatsby-plugin-emotion',
     'gatsby-plugin-image',
