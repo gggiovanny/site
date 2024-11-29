@@ -20,7 +20,7 @@ exports.onCreateNode = ({ node, actions }) => {
       return `${v('Make')} ${v('Model')}`;
     }
     const getSoftware = () => {
-      if (v('Software').includes(v('Model'))) return 'Sin edición.';
+      if (!v('Software') || v('Software').includes(v('Model'))) return 'Sin edición';
       return `Editado en ${v('Software')}.`;
     }
 
