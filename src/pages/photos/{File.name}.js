@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { RiDownloadCloudFill, RiFileCopyFill } from 'react-icons/ri';
@@ -38,16 +37,20 @@ const ToolbarContainer = styled.div`
   a {
     color: #888;
   }
-
 `;
+
+const Photo = React.forwardRef((imageProps, ref) => (
+  <img ref={ref} width="100%" height="auto" loading="lazy" {...imageProps} />
+));
 
 function ImageCategoryPage({ data: { file } }) {
   const { getFullUrl } = useFullUrlBuilder();
-  if (!file?.childImageSharp?.gatsbyImageData) return <NotFoundPage />;
+  if (!file?.childImageSharp?.fluid) return <NotFoundPage />;
 
   const fullPhotoUrl = getFullUrl(file.photoPath);
   const { technicalDescription } = file.fields;
   const { publicURL } = file;
+  const photo = file.childImageSharp.fluid;
 
   return (
     <Layout renderUp={() => <StyledPhotoPagination category={file.fields.category} photoPath={file.photoPath} />}>
@@ -60,7 +63,7 @@ function ImageCategoryPage({ data: { file } }) {
           <RiDownloadCloudFill />
         </a>
       </ToolbarContainer>
-      <GatsbyImage image={file.childImageSharp.gatsbyImageData} alt={file.name} />
+      <Photo srcSet={photo.srcSet} placeholder={photo.originalName} />
       <Description>{file.fields.technicalDescription}</Description>
     </Layout>
   );
@@ -70,7 +73,6 @@ export const query = graphql`
   query ($name: String) {
     file(name: { eq: $name }, relativeDirectory: { regex: "/photo/" }) {
       id
-      name
       photoPath: gatsbyPath(filePath: "/photos/{File.name}")
       fields {
         category
@@ -78,7 +80,10 @@ export const query = graphql`
       }
       publicURL
       childImageSharp {
-        gatsbyImageData(width: 4096, placeholder: BLURRED)
+        fluid {
+          srcSet
+          originalName
+        }
       }
     }
   }
