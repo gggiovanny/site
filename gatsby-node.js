@@ -36,6 +36,9 @@ exports.onCreateNode = ({ node, actions }) => {
     ].filter(Boolean).join(' | ');
 
     createNodeField({ node, name: 'technicalDescription', value: technicalDescription });
+
+    const customTags = tags.subject?.value?.map((v) => v.description) || [];
+    createNodeField({ node, name: 'tags', value: customTags });
   });
 };
 

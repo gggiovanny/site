@@ -27,7 +27,7 @@ function IndexPage({ data }) {
 export const query = graphql`
   query {
     allFile(
-      filter: { relativeDirectory: { regex: "/photos/" }, name: { eq: "cover" } }
+      filter: { relativeDirectory: { regex: "/photos/" }, fields: { tags: { in: "cover" } } }
       sort: { changeTime: DESC }
     ) {
       nodes {
