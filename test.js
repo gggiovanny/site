@@ -4,7 +4,7 @@ const ExifReader = require('exifreader');
 
 const photoWithoutTags = "/Users/gggiovanny/code/site/src/images/photos/Día de muertos/IMG_7846.jpg";
 const photoWithTags = "/Users/gggiovanny/code/site/src/images/photos/Día de muertos/IMG_8255.jpg";
-const absolutePath = photoWithoutTags;
+const absolutePath = photoWithTags;
 
 ExifReader.load(absolutePath).then(tags => {
   const v = (k) => tags[k]?.description || '';
