@@ -8,3 +8,4 @@ public
 **/.DS_Store
 src/images/photos/.stfolder/syncthing-*.txt
 test.js
+**/.syncthing.*.tmp
