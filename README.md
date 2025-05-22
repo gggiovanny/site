@@ -1,49 +1,38 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal Starter
-</h1>
+# giovanny-baltazar-site
 
-## 🚀 Quick start
+## Table of Contents
 
-1.  **Create a Gatsby site.**
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Usage](#usage)
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+## About <a name = "about"></a>
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+This is my humble personal site. Mostly dedicated to have an online place to display my photos.
 
-2.  **Start developing.**
+## Getting Started <a name = "getting_started"></a>
 
-    Navigate into your new site’s directory and start it up.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+### Prerequisites
 
-3.  **Open the code and start customizing!**
+You just need to install [volta](https://volta.sh/).
 
-    Your site is now running at http://localhost:8000!
+Also I recommend to set aliases for npm on mac, since is a pain to type the full command. I use Fish, so it look like:
+```fish
+alias pn 'npx pnpm'
+alias np 'npx pnpm'
+```
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+### Installing
 
-4.  **Learn more**
+```
+node -v # just to trigger volta to download the specified node version
+npx pnpm install
+```
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## Usage <a name = "usage"></a>
 
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)
+```
+npx pnpm start
+```
