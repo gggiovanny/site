@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-import styled from '@emotion/styled';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -8,7 +7,6 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
 import { useFullUrlBuilder } from '../../hooks';
-import { cleanLinksCss, gray, mainfontCss } from '../../styles';
 import { getShareText } from '../../utils/getShareText';
 import NotFoundPage from '../404';
 
@@ -16,34 +14,6 @@ import NotFoundPage from '../404';
 const Photo = React.forwardRef((imageProps, ref) => (
   <img ref={ref} width="100%" height="auto" loading="lazy" {...imageProps} />
 ));
-
-const PhotoPreview = styled(Photo)`
-  cursor: pointer;
-`;
-
-const ToolbarContainer = styled.div`
-  display: flex;
-  gap: 0.5rem;
-`;
-
-const BackToTopContainer = styled.div`
-  ${mainfontCss}
-
-  color: ${gray};
-  margin-top: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-
-  cursor: pointer;
-  white-space: pre-wrap;
-
-  a {
-    ${cleanLinksCss}
-  }
-`;
 
 function ImageCategoryPage({ data }) {
   const { nodes } = data.allFile;
@@ -59,15 +29,18 @@ function ImageCategoryPage({ data }) {
     const fullPhotoUrl = getFullUrl(photoPath);
 
     return (
-      <ToolbarContainer>
+      <div className="flex gap-2">
         <CopyToClipboard text={getShareText({ fullPhotoUrl, technicalDescription })}>
-          <RiFileCopyFill />
+          <RiFileCopyFill className="cursor-pointer" />
         </CopyToClipboard>
         <a href={getFullUrl(publicURL)} download>
           <RiDownloadCloudFill />
         </a>
-        <RiExternalLinkFill onClick={() => window.open(photoPath, '_blank')} />
-      </ToolbarContainer>
+        <RiExternalLinkFill
+          onClick={() => window.open(photoPath, '_blank')}
+          className="cursor-pointer"
+        />
+      </div>
     );
   };
 
@@ -88,19 +61,24 @@ function ImageCategoryPage({ data }) {
                 src={src} // this is the actual heavy image
               >
                 {/* this is the preview displayed before open the actual heavier image */}
-                <PhotoPreview srcSet={srcSet} placeholder={originalName} />
+                <Photo srcSet={srcSet} placeholder={originalName} className="cursor-pointer" />
               </PhotoView>
             );
           })}
         </ImageList>
       </PhotoProvider>
 
-      <BackToTopContainer>
+      <div className="font-raleway text-gray-500 mt-20 flex flex-col justify-center items-center gap-2 cursor-pointer whitespace-pre-wrap">
         <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑ Back to Top</div>
         <div>
-          <Link to="/">⌂ Return to Home</Link>
+          <Link
+            to="/"
+            className="text-gray-500 hover:text-black transition-colors duration-200 ease-in-out no-underline"
+          >
+            ⌂ Return to Home
+          </Link>
         </div>
-      </BackToTopContainer>
+      </div>
     </Layout>
   );
 }

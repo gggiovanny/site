@@ -9,7 +9,7 @@ module.exports = {
   },
   // flags: { DEV_SSR: true },
   plugins: [
-    'gatsby-plugin-emotion',
+    'gatsby-plugin-postcss',
     'gatsby-plugin-image',
     'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',

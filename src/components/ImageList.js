@@ -1,15 +1,9 @@
-import styled from '@emotion/styled';
+import React from 'react';
 
-export const ImageList = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-
-  @media (min-width: 768px) {
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-`;
+export const ImageList = ({ children }) => {
+  return (
+    <section className="flex flex-wrap justify-center items-center gap-8 md:max-w-[650px] md:mx-auto">
+      {children}
+    </section>
+  );
+};
