@@ -5,7 +5,7 @@ module.exports = {
   pathPrefix: '/site',
   siteMetadata: {
     title: 'Giovanny Baltazar',
-    siteUrl: 'https://giovanny.site/',
+    siteUrl: 'https://gggiovanny.github.io/site',
   },
   // flags: { DEV_SSR: true },
   plugins: [
