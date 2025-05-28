@@ -7,9 +7,9 @@ import { Footer } from './Footer';
 
 export const Layout = ({ pageTitle, parentUrl, children, renderUp }) => {
   return (
-    <div>
+    <div className="max-w-[1200px] mx-auto 2xl:max-w-[1600px]">
       <header className="pt-12 pb-16 px-4">
-        <div className="max-w-screen-lg mx-auto xl:max-w-screen-xl font-raleway flex flex-row justify-between items-center">
+        <div className="font-raleway flex flex-row justify-between items-center">
           <div>
             <Link to="/" className="text-gray-500 hover:text-gray-900 no-underline">
               <StaticImage
@@ -32,7 +32,7 @@ export const Layout = ({ pageTitle, parentUrl, children, renderUp }) => {
           </nav>
         </div>
       </header>
-      <main className="p-4 max-w-screen-lg mx-auto xl:max-w-screen-xl">
+      <main className="p-4">
         {pageTitle && <h1>{pageTitle}</h1>}
         {children}
       </main>
