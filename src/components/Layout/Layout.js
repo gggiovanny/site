@@ -9,7 +9,7 @@ export const Layout = ({ pageTitle, parentUrl, children, renderUp }) => {
   return (
     <div>
       <header className="pt-12 pb-16 px-4">
-        <div className="max-w-screen-lg mx-auto xl:max-w-screen-xl font-raleway flex flex-row justify-between items-center">
+        <div className="max-w-screen-lg mx-auto xl:max-w-screen-xl flex flex-row justify-between items-center">
           <div>
             <Link to="/" className="text-gray-500 hover:text-gray-900 no-underline">
               <StaticImage

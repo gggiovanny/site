@@ -14,7 +14,6 @@ import NotFoundPage from '../404';
 const Photo = React.forwardRef((imageProps, ref) => (
   <img ref={ref} width="100%" height="auto" loading="lazy" {...imageProps} />
 ));
-
 function ImageCategoryPage({ data }) {
   const { nodes } = data.allFile;
 
@@ -68,7 +67,7 @@ function ImageCategoryPage({ data }) {
         </ImageList>
       </PhotoProvider>
 
-      <div className="font-raleway text-gray-500 mt-20 flex flex-col justify-center items-center gap-2 cursor-pointer whitespace-pre-wrap">
+      <div className="text-gray-500 mt-20 flex flex-col justify-center items-center gap-2 cursor-pointer whitespace-pre-wrap">
         <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑ Back to Top</div>
         <div>
           <Link
