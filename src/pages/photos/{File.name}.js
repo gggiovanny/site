@@ -20,7 +20,6 @@ function ImageCategoryPage({ data: { file } }) {
 
   const fullPhotoUrl = getFullUrl(file.photoPath);
   const { technicalDescription } = file.fields;
-  const { publicURL } = file;
   const photo = file.childImageSharp.fluid;
 
   return (
@@ -37,9 +36,6 @@ function ImageCategoryPage({ data: { file } }) {
         <CopyToClipboard text={getShareText({ fullPhotoUrl, technicalDescription })}>
           <RiFileCopyFill className="cursor-pointer" />
         </CopyToClipboard>
-        <a href={getFullUrl(publicURL)} download className="text-[#888]">
-          <RiDownloadCloudFill />
-        </a>
       </div>
       <Photo srcSet={photo.srcSet} placeholder={photo.originalName} />
       <div className="mt-4 text-center text-[#888] transition-colors duration-200 ease-in-out hover:text-[#111]">
@@ -58,7 +54,6 @@ export const query = graphql`
         category
         technicalDescription
       }
-      publicURL
       childImageSharp {
         fluid {
           srcSet

@@ -23,7 +23,7 @@ function ImageCategoryPage({ data }) {
 
   const Toolbar = ({ index }) => {
     const node = nodes[index];
-    const { photoPath, publicURL } = node;
+    const { photoPath } = node;
     const { technicalDescription } = node.fields;
     const fullPhotoUrl = getFullUrl(photoPath);
 
@@ -32,9 +32,6 @@ function ImageCategoryPage({ data }) {
         <CopyToClipboard text={getShareText({ fullPhotoUrl, technicalDescription })}>
           <RiFileCopyFill className="cursor-pointer" />
         </CopyToClipboard>
-        <a href={getFullUrl(publicURL)} download>
-          <RiDownloadCloudFill />
-        </a>
         <RiExternalLinkFill
           onClick={() => window.open(photoPath, '_blank')}
           className="cursor-pointer"
@@ -95,7 +92,6 @@ export const query = graphql`
           category
           technicalDescription
         }
-        publicURL
         childImageSharp {
           fluid {
             originalName
