@@ -1,11 +1,7 @@
-import styled from '@emotion/styled';
+import React from 'react';
 
-export const ImageGrid = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
-  grid-gap: 1rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-`;
+export const ImageGrid = ({ children }) => {
+  return (
+    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">{children}</section>
+  );
+};

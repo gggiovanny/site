@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('react-photo-view/dist/react-photo-view.css');
 
@@ -21,26 +23,21 @@ body {
 
   svg {
     border-radius: 50%;
-    padding: 8px;
     margin-top: 16px;
     margin-right: 16px;
 
+    transition: fill 0.3s ease;
 
-
-    background-color: rgba(255, 255, 255, .1);
-    transition: background-color .3s ease;
-
-    color: black;
     fill: black;
 
     &:hover {
-      background-color: rgba(255, 255, 255, .3);
+      fill: rgba(255, 255, 255, 0.3);
     }
   }
 }
 
-.PhotoView-Slider__ArrowLeft>svg,
-.PhotoView-Slider__ArrowRight>svg {
+.PhotoView-Slider__ArrowLeft > svg,
+.PhotoView-Slider__ArrowRight > svg {
   border-radius: 50% !important;
 }
 

@@ -25,11 +25,8 @@
     "postinstall": "cp .vscode/settings.json.example .vscode/settings.json && cp .vscode/tasks.json.example .vscode/tasks.json"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
     "@mdx-js/react": "^3.0.1",
     "gatsby": "^5.13.3",
-    "gatsby-plugin-emotion": "^8.13.1",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
     "gatsby-plugin-mdx": "^5.13.1",
@@ -49,11 +46,16 @@
     "pnpm": "8.15.6"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.7",
+    "autoprefixer": "^10.4.21",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-simple-import-sort": "^12.0.0",
+    "exifreader": "^4.25.0",
+    "gatsby-plugin-postcss": "^6.14.0",
     "gh-pages": "^6.1.1",
+    "postcss": "^8.5.3",
     "prettier": "^3.2.5",
-    "exifreader": "^4.25.0"
+    "tailwindcss": "^4.1.7"
   },
   "packageManager": "pnpm@8.15.6+sha256.01c01eeb990e379b31ef19c03e9d06a14afa5250b82e81303f88721c99ff2e6f"
 }
