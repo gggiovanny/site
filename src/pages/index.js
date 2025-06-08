@@ -14,7 +14,7 @@ function IndexPage({ data }) {
               key={node.id}
               image={node.childImageSharp.gatsbyImageData}
               text={category}
-              alt={`Cover image for${category}`}
+              alt={`Cover image for ${category}`}
               to={node.galleryPath}
             />
           );
