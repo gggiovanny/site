@@ -16,7 +16,7 @@ export const Navbar = ({ parentUrl }) => {
             <Link to="/">About</Link>
           </li>
           <li>
-            <Link to="/collections">Galleries</Link>
+            <Link to="/galleries">Galleries</Link>
           </li>
           <li className={parentUrl ? 'opacity-100' : 'opacity-0 pointer-events-none'}>
             <Link

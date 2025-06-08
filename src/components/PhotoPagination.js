@@ -6,7 +6,7 @@ export function PhotoPagination({ category, photoPath, ...rest }) {
     query {
       allFile(sort: { changeTime: DESC }) {
         nodes {
-          photoPath: gatsbyPath(filePath: "/collections/shots/{File.name}")
+          photoPath: gatsbyPath(filePath: "/galleries/shots/{File.name}")
           fields {
             category
           }
@@ -35,7 +35,7 @@ export function PhotoPagination({ category, photoPath, ...rest }) {
         )}
       </div>
       <div className="flex gap-4 justify-evenly">
-        <Link to={`/collections/${category}`} className="text-base">
+        <Link to={`/galleries/${category}`} className="text-base">
           Go to gallery
         </Link>
       </div>

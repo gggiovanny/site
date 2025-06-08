@@ -31,7 +31,7 @@ export const query = graphql`
       sort: { changeTime: DESC }
     ) {
       nodes {
-        galleryPath: gatsbyPath(filePath: "/collections/{File.fields__category}")
+        galleryPath: gatsbyPath(filePath: "/galleries/{File.fields__category}")
         id
         fields {
           category

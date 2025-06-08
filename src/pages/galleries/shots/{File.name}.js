@@ -49,7 +49,7 @@ export const query = graphql`
   query ($name: String) {
     file(name: { eq: $name }, relativeDirectory: { regex: "/photo/" }) {
       id
-      photoPath: gatsbyPath(filePath: "/collections/shots/{File.name}")
+      photoPath: gatsbyPath(filePath: "/galleries/shots/{File.name}")
       fields {
         category
         technicalDescription
