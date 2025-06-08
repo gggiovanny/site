@@ -2,7 +2,7 @@
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { RiDownloadCloudFill, RiExternalLinkFill, RiFileCopyFill } from 'react-icons/ri';
+import { RiExternalLinkFill, RiFileCopyFill } from 'react-icons/ri';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 import { ImageList, Layout, Seo } from '../../components';
@@ -86,7 +86,7 @@ export const query = graphql`
       sort: { changeTime: DESC }
     ) {
       nodes {
-        photoPath: gatsbyPath(filePath: "/photos/{File.name}")
+        photoPath: gatsbyPath(filePath: "/collections/shots/{File.name}")
         id
         fields {
           category

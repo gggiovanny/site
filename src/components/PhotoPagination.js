@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 export function PhotoPagination({ category, photoPath, ...rest }) {
@@ -6,7 +6,7 @@ export function PhotoPagination({ category, photoPath, ...rest }) {
     query {
       allFile(sort: { changeTime: DESC }) {
         nodes {
-          photoPath: gatsbyPath(filePath: "/photos/{File.name}")
+          photoPath: gatsbyPath(filePath: "/collections/shots/{File.name}")
           fields {
             category
           }
@@ -24,20 +24,20 @@ export function PhotoPagination({ category, photoPath, ...rest }) {
     <div {...rest}>
       <div className="flex gap-4 justify-evenly">
         {previousPhoto && (
-          <a href={previousPhoto.photoPath} className="text-base">
+          <Link to={previousPhoto.photoPath} className="text-base">
             Previous
-          </a>
+          </Link>
         )}
         {nextPhoto && (
-          <a href={nextPhoto.photoPath} className="text-base">
+          <Link to={nextPhoto.photoPath} className="text-base">
             Next
-          </a>
+          </Link>
         )}
       </div>
       <div className="flex gap-4 justify-evenly">
-        <a href={`/galleries/${category}`} className="text-base">
+        <Link to={`/collections/${category}`} className="text-base">
           Go to gallery
-        </a>
+        </Link>
       </div>
     </div>
   );

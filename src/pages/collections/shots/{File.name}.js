@@ -2,13 +2,13 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { RiDownloadCloudFill, RiFileCopyFill } from 'react-icons/ri';
+import { RiFileCopyFill } from 'react-icons/ri';
 
-import { Layout, Seo } from '../../components';
-import { PhotoPagination } from '../../components/PhotoPagination';
-import { useFullUrlBuilder } from '../../hooks';
-import { getShareText } from '../../utils/getShareText';
-import NotFoundPage from '../404';
+import { Layout, Seo } from '../../../components';
+import { PhotoPagination } from '../../../components/PhotoPagination';
+import { useFullUrlBuilder } from '../../../hooks';
+import { getShareText } from '../../../utils/getShareText';
+import NotFoundPage from '../../404';
 
 const Photo = React.forwardRef((imageProps, ref) => (
   <img ref={ref} width="100%" height="auto" loading="lazy" {...imageProps} />
@@ -49,7 +49,7 @@ export const query = graphql`
   query ($name: String) {
     file(name: { eq: $name }, relativeDirectory: { regex: "/photo/" }) {
       id
-      photoPath: gatsbyPath(filePath: "/photos/{File.name}")
+      photoPath: gatsbyPath(filePath: "/collections/shots/{File.name}")
       fields {
         category
         technicalDescription
