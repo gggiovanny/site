@@ -3,10 +3,12 @@ import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { RiArrowLeftSLine } from 'react-icons/ri';
 
+import { layout_size_class } from './constants';
+
 export const Navbar = ({ parentUrl }) => {
   return (
-    <header className="pt-12 pb-16 px-4">
-      <div className="max-w-screen-lg mx-auto xl:max-w-screen-xl flex flex-row justify-between items-center">
+    <header className="py-6">
+      <div className={`${layout_size_class} flex flex-row justify-between items-center`}>
         <div>
           <Link to="/" className="text-gray-500 hover:text-gray-900 no-underline">
             <StaticImage
