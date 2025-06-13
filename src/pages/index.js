@@ -53,10 +53,10 @@ function RevealCard({ children, className = '' }) {
 }
 
 function IndexPage({ data }) {
-  const cardClass = 'h-screen';
+  const cardClass = 'h-screen snap-start';
   return (
     <Layout>
-      <div className="font-semibold text-6xl font-raleway">
+      <div className="font-semibold text-6xl font-raleway snap-y snap-mandatory overflow-y-auto h-screen">
         <RevealCard className={`bg-gray-50 ${cardClass}`}>
           <p>Hi there, I'm Gio!</p>
         </RevealCard>
@@ -99,7 +99,7 @@ function IndexPage({ data }) {
         </RevealCard>
 
         {/* Spacer for better scrolling experience */}
-        <div className="h-96 " />
+        <div className="h-96 snap-start" />
       </div>
     </Layout>
   );
