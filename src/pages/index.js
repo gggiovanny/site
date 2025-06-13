@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { HiChevronDown } from 'react-icons/hi';
 
 import { Layout, Seo } from '../components';
 
@@ -52,11 +53,49 @@ function RevealCard({ children, className = '' }) {
   );
 }
 
+// Scroll hint arrow component
+function ScrollHint() {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+
+      // Hide arrow when near the bottom of the page
+      setIsVisible(scrollPosition < documentHeight - windowHeight - 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScrollDown = () => {
+    window.scrollBy({
+      top: window.innerHeight,
+      behavior: 'smooth',
+    });
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <button
+      onClick={handleScrollDown}
+      className="fixed bottom-0 left-0 w-full h-32 flex items-center justify-center opacity-30 hover:opacity-60 transition-opacity duration-300 z-10"
+      aria-label="Scroll down"
+    >
+      <HiChevronDown className="w-10 h-10 text-gray-800 animate-bounce" />
+    </button>
+  );
+}
+
 function IndexPage({ data }) {
   const cardClass = 'h-screen snap-start';
   return (
     <Layout>
-      <div className="font-semibold text-6xl font-raleway snap-y snap-mandatory overflow-y-auto h-screen">
+      <div className="font-semibold text-6xl font-raleway snap-y snap-mandatory">
         <RevealCard className={`bg-gray-50 ${cardClass}`}>
           <p>Hi there, I'm Gio!</p>
         </RevealCard>
@@ -101,6 +140,8 @@ function IndexPage({ data }) {
         {/* Spacer for better scrolling experience */}
         <div className="h-96 snap-start" />
       </div>
+
+      <ScrollHint />
     </Layout>
   );
 }
