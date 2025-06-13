@@ -54,28 +54,39 @@ function RevealCard({ children, className = '' }) {
 }
 
 // Scroll hint arrow component
-function ScrollHint() {
+function ScrollHint({ scrollContainerRef }) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const documentHeight = document.documentElement.scrollHeight;
-      const windowHeight = window.innerHeight;
+      if (!scrollContainerRef.current) return;
+
+      const scrollPosition = scrollContainerRef.current.scrollTop;
+      const scrollHeight = scrollContainerRef.current.scrollHeight;
+      const clientHeight = scrollContainerRef.current.clientHeight;
 
       // Hide arrow when near the bottom of the page
-      setIsVisible(scrollPosition < documentHeight - windowHeight - 100);
+      setIsVisible(scrollPosition < scrollHeight - clientHeight * 2);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [scrollContainerRef]);
 
   const handleScrollDown = () => {
-    window.scrollBy({
-      top: window.innerHeight,
-      behavior: 'smooth',
-    });
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        top: window.innerHeight,
+        behavior: 'smooth',
+      });
+    }
   };
 
   if (!isVisible) return null;
@@ -93,9 +104,14 @@ function ScrollHint() {
 
 function IndexPage({ data }) {
   const cardClass = 'h-screen snap-start';
+  const scrollContainerRef = useRef(null);
+
   return (
     <Layout>
-      <div className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway snap-y snap-mandatory">
+      <div
+        ref={scrollContainerRef}
+        className="h-screen overflow-y-auto snap-y snap-proximity font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway"
+      >
         <RevealCard className={`bg-gray-50 ${cardClass}`}>
           <p>Hi there, I'm Gio!</p>
         </RevealCard>
@@ -138,10 +154,10 @@ function IndexPage({ data }) {
         </RevealCard>
 
         {/* Spacer for better scrolling experience */}
-        <div className="h-24 snap-start" />
+        <div className="h-96 snap-start" />
       </div>
 
-      <ScrollHint />
+      <ScrollHint scrollContainerRef={scrollContainerRef} />
     </Layout>
   );
 }
