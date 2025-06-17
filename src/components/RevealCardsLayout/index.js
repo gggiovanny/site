@@ -45,13 +45,14 @@ export function RevealCardsLayout({ children }) {
   }, []);
 
   const cardBackgrounds = ['bg-gray-50', 'bg-white'];
-
+  const linkClass =
+    '[&_a]:no-underline [&_a]:text-blue-400 [&_a]:font-semibold [&_a]:px-1 [&_a]:py-0.5 [&_a]:mx-0.5 [&_a]:rounded [&_a]:transition-all [&_a]:duration-300 [&_a]:ease-out [&_a:hover]:text-white [&_a:hover]:bg-blue-400 [&_a:hover]:shadow-lg';
+  const snapContainerClass = 'h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth';
+  const textClass =
+    'font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway';
   return (
     <div>
-      <div
-        ref={scrollContainerRef}
-        className="h-screen overflow-y-auto snap-y snap-mandatory font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway"
-      >
+      <div ref={scrollContainerRef} className={`${snapContainerClass} ${textClass} ${linkClass}`}>
         {children.map((content, index) => (
           <RevealCard
             key={index}
