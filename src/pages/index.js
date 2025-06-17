@@ -110,7 +110,7 @@ function IndexPage({ data }) {
     <Layout>
       <div
         ref={scrollContainerRef}
-        className="h-screen overflow-y-auto snap-y snap-proximity font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway"
+        className="h-screen overflow-y-auto snap-y snap-mandatory font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway"
       >
         <RevealCard className={`bg-gray-50 ${cardClass}`}>
           <p>Hi there, I'm Gio!</p>
