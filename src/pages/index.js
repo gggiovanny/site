@@ -1,163 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { HiChevronDown } from 'react-icons/hi';
+import React from 'react';
 
 import { Layout, Seo } from '../components';
-
-// RevealCard component for scroll-triggered animations
-function RevealCard({ children, className = '' }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    const currentRef = cardRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          setHasAnimated(true);
-        } else {
-          setIsVisible(false);
-        }
-      },
-      {
-        threshold: 0.3,
-        rootMargin: '-20% 0px -20% 0px',
-      }
-    );
-
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
-
-  return (
-    <div
-      ref={cardRef}
-      className={`h-full w-full flex items-center justify-center px-8 transition-all duration-1000 ease-out ${
-        isVisible
-          ? 'opacity-100 translate-y-0'
-          : hasAnimated
-            ? 'opacity-0 -translate-y-24'
-            : 'opacity-0 translate-y-24'
-      } ${className}`}
-    >
-      <div className="max-w-4xl text-center">{children}</div>
-    </div>
-  );
-}
-
-// Scroll hint arrow component
-function ScrollHint({ scrollContainerRef }) {
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!scrollContainerRef.current) return;
-
-      const scrollPosition = scrollContainerRef.current.scrollTop;
-      const scrollHeight = scrollContainerRef.current.scrollHeight;
-      const clientHeight = scrollContainerRef.current.clientHeight;
-
-      // Hide arrow when near the bottom of the page
-      setIsVisible(scrollPosition < scrollHeight - clientHeight * 2);
-    };
-
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.addEventListener('scroll', handleScroll);
-    }
-
-    return () => {
-      if (scrollContainerRef.current) {
-        scrollContainerRef.current.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, [scrollContainerRef]);
-
-  const handleScrollDown = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        top: window.innerHeight,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  if (!isVisible) return null;
-
-  return (
-    <button
-      onClick={handleScrollDown}
-      className="fixed bottom-0 left-0 w-full h-32 flex items-center justify-center opacity-30 hover:opacity-60 transition-opacity duration-300 z-10"
-      aria-label="Scroll down"
-    >
-      <HiChevronDown className="w-10 h-10 text-gray-800 animate-bounce" />
-    </button>
-  );
-}
+import { RevealCardsLayout } from '../components/RevealCardsLayout';
 
 function IndexPage({ data }) {
-  const cardClass = 'h-screen snap-start';
-  const scrollContainerRef = useRef(null);
+  const cardContents = [
+    "Hi there, I'm Gio!",
+    'I have two passions: create things with code, and take amazing pictures.',
+    "Are you still here? Cool! I'll show you a bit of what I do.",
+    "I do software development for a living, mostly full stack web systems. I have 5 years of experience, and I've been told I'm good at it. And I think I do.",
+    "You can find I pinch of my work in my Github, but most of my career victories where doing private code, so sadly I can not show you! But you can check what I've done in my Linkedin.",
+    "You are still here? Nice! I can show you now my most recent passion: take amazing pictures! Well, I'm not sure if they are amazing, but I'm doing my best.",
+    "If you like what you see and wanna see more, don't be shy and follow me on instagram! I'll be glad to see you around!",
+  ];
 
   return (
     <Layout>
-      <div
-        ref={scrollContainerRef}
-        className="h-screen overflow-y-auto snap-y snap-mandatory font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-raleway"
-      >
-        <RevealCard className={`bg-gray-50 ${cardClass}`}>
-          <p>Hi there, I'm Gio!</p>
-        </RevealCard>
-
-        <RevealCard className={`bg-white ${cardClass}`}>
-          <p>I have two passions: create things with code, and take amazing pictures.</p>
-        </RevealCard>
-
-        <RevealCard className={`bg-gray-50 ${cardClass}`}>
-          <p>Are you still here? Cool! I'll show you a bit of what I do.</p>
-        </RevealCard>
-
-        <RevealCard className={`bg-white ${cardClass}`}>
-          <p>
-            I do software development for a living, mostly full stack web systems. I have 5 years of
-            experience, and I've been told I'm good at it. And I think I do.
-          </p>
-        </RevealCard>
-
-        <RevealCard className={`bg-gray-50 ${cardClass}`}>
-          <p>
-            You can find I pinch of my work in my Github, but most of my career victories where
-            doing private code, so sadly I can not show you! But you can check what I've done in my
-            Linkedin.
-          </p>
-        </RevealCard>
-
-        <RevealCard className={`bg-white ${cardClass}`}>
-          <p>
-            You are still here? Nice! I can show you now my most recent passion: take amazing
-            pictures! Well, I'm not sure if they are amazing, but I'm doing my best.
-          </p>
-        </RevealCard>
-
-        <RevealCard className={`bg-gray-50 ${cardClass}`}>
-          <p>
-            If you like what you see and wanna see more, don't be shy and follow me on instagram!
-            I'll be glad to see you around!
-          </p>
-        </RevealCard>
-
-        {/* Spacer for better scrolling experience */}
-        <div className="h-96 snap-start" />
-      </div>
-
-      <ScrollHint scrollContainerRef={scrollContainerRef} />
+      <RevealCardsLayout>
+        {cardContents.map((content, index) => (
+          <p key={index}>{content}</p>
+        ))}
+      </RevealCardsLayout>
     </Layout>
   );
 }
