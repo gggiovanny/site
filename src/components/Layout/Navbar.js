@@ -20,7 +20,7 @@ export const Navbar = ({ parentUrl }) => {
           </li>
           <li className={parentUrl ? 'opacity-100' : 'opacity-0 pointer-events-none'}>
             <Link
-              to={parentUrl}
+              to={parentUrl || '/'}
               className="text-gray-500 hover:text-gray-900 no-underline"
               aria-label="Back"
             >
